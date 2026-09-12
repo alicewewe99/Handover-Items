@@ -1,6 +1,7 @@
 import React from 'react';
 import { ModalState } from '../types';
 import { playHapticEffect } from '../utils/date';
+import { HedgehogMascot } from './HedgehogMascot';
 
 interface CustomModalProps {
   modal: ModalState;
@@ -35,8 +36,12 @@ export const CustomModal: React.FC<CustomModalProps> = ({ modal, onClose }) => {
         style={{ borderColor: '#e07a5f' }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div id="modal-icon" className="text-4xl animate-bounce">
-          {modal.icon || '🍓'}
+        <div id="modal-icon" className="flex justify-center items-center">
+          {modal.icon === 'hedgehog' ? (
+            <HedgehogMascot size={64} showHalo={true} />
+          ) : (
+            <div className="text-4xl animate-bounce">{modal.icon || '🍓'}</div>
+          )}
         </div>
         <div
           id="modal-message"

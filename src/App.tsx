@@ -7,6 +7,7 @@ import { DateList } from './components/DateList';
 import { GroupList } from './components/GroupList';
 import { CustomModal } from './components/CustomModal';
 import { ImagePreviewModal } from './components/ImagePreviewModal';
+import { HedgehogMascot } from './components/HedgehogMascot';
 import { ClipboardCopy, Camera, Trash2, Sparkles, Store } from 'lucide-react';
 
 const STORAGE_KEY_DATES = 'store_shift_dates';
@@ -20,7 +21,7 @@ export default function App() {
   const [modal, setModal] = useState<ModalState>({
     isOpen: false,
     message: '',
-    icon: '🍓',
+    icon: 'hedgehog',
     type: 'alert',
   });
 
@@ -99,7 +100,7 @@ export default function App() {
   }, [groups]);
 
   // Modal helpers
-  const showAlert = (message: string, icon = '🍓') => {
+  const showAlert = (message: string, icon = 'hedgehog') => {
     playHapticEffect();
     setModal({
       isOpen: true,
@@ -266,19 +267,23 @@ export default function App() {
   return (
     <div className="flex flex-col items-center pt-6 pb-20 px-4 min-h-screen">
       {/* Top Header */}
-      <header className="w-full max-w-md mb-4 text-center">
-        <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-full bg-[#e07a5f]/10 text-[#d64045] text-xs font-bold mb-2">
+      <header className="w-full max-w-md mb-4 text-center flex flex-col items-center">
+        {/* Hedgehog Mascot holding chalkboard: 交班 */}
+        <div className="mb-2 transition-transform hover:scale-105 drop-shadow-md">
+          <HedgehogMascot size={78} showHalo={true} />
+        </div>
+
+        <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-full bg-[#e07a5f]/10 text-[#d64045] text-xs font-bold mb-1.5">
           <Store className="w-3.5 h-3.5" />
           <span>雜貨小舖風格交班系統</span>
         </div>
+
         <h1
           id="app-title"
           className="text-2xl sm:text-3xl font-bold tracking-wider flex items-center justify-center gap-2"
           style={{ color: '#d64045' }}
         >
-          <span className="select-none">🧺</span>
           <span>交班事項</span>
-          <span className="select-none">🍯</span>
         </h1>
         <p className="text-xs sm:text-sm text-[#8d6e63] mt-1 font-medium">
           溫馨繽紛雜貨店風格，即時預覽與輕鬆打包交班

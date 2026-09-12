@@ -22,7 +22,7 @@ export const ImagePreviewModal: React.FC<ImagePreviewModalProps> = ({
     link.download = `交班事項_${today}.png`;
     link.href = imageSrc;
     link.click();
-    onShowAlert('📥 圖片已開始下載儲存囉！', '🎉');
+    onShowAlert('📥 刺蝟小幫手已為您下載好交班圖片！', 'hedgehog');
   };
 
   const handleCopyImage = async () => {
@@ -34,7 +34,7 @@ export const ImagePreviewModal: React.FC<ImagePreviewModalProps> = ({
         await navigator.clipboard.write([
           new ClipboardItem({ 'image/png': blob }),
         ]);
-        onShowAlert('📋 圖片已複製到您的剪貼簿！可直接貼上至 LINE 或通訊軟體', '✨');
+        onShowAlert('📋 圖片已複製到您的剪貼簿！可直接貼上至 LINE 或通訊軟體', 'hedgehog');
       } else {
         handleDownload();
       }

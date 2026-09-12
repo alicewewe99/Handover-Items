@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react';
 import { HandoverDateItem, HandoverGroup } from '../types';
 import { formatDate } from '../utils/date';
+import { HedgehogMascot } from './HedgehogMascot';
 
 interface CaptureBoardProps {
   dates: HandoverDateItem[];
@@ -25,24 +26,23 @@ export const CaptureBoard = forwardRef<HTMLDivElement, CaptureBoardProps>(
           boxSizing: 'border-box',
         }}
       >
-        {/* Floating Sunflower */}
+        {/* Hedgehog Mascot holding chalkboard: 交班 */}
         <div
-          className="absolute right-4 top-4 text-2xl pointer-events-none opacity-90 select-none animate-bounce"
+          className="absolute right-3.5 top-3.5 pointer-events-none select-none drop-shadow-sm transition-transform hover:scale-105"
           aria-hidden="true"
         >
-          🌻
+          <HedgehogMascot size={58} showHalo={true} />
         </div>
 
         {/* Board Title */}
-        <h2
-          className="text-center font-bold pb-2 mb-4 tracking-wider text-xl sm:text-2xl"
-          style={{
-            color: '#d64045',
-            borderBottom: '2px dashed rgba(244, 162, 97, 0.5)',
-          }}
-        >
-          🌟 交班事項 🌟
-        </h2>
+        <div className="pr-14 mb-4 pb-2 border-b-2 border-dashed border-[#f4a261]/50 flex items-center gap-2">
+          <h2
+            className="font-bold tracking-wider text-xl sm:text-2xl"
+            style={{ color: '#d64045' }}
+          >
+            🌟 交班事項 🌟
+          </h2>
+        </div>
 
         {/* Dates Section */}
         <div

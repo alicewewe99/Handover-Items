@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <filter id="soft-shadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#4a3b32" flood-opacity="0.18" />
+    </filter>
+    <radialGradient id="spikeGrad" cx="45%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#b07d62" />
+      <stop offset="70%" stop-color="#8c583e" />
+      <stop offset="100%" stop-color="#6f3d26" />
+    </radialGradient>
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff1e6" />
+      <stop offset="100%" stop-color="#fde2cb" />
+    </linearGradient>
+    <linearGradient id="chalkboardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2d3748" />
+      <stop offset="100%" stop-color="#1a202c" />
+    </linearGradient>
+    <linearGradient id="woodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0a96d" />
+      <stop offset="100%" stop-color="#c18343" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Glow Circle (Optional) -->
+  <circle cx="100" cy="100" r="92" fill="#fff9f2" stroke="#f4a261" stroke-width="4" stroke-dasharray="6 4" opacity="0.9" />
+
+  <!-- Hedgehog Back Spines -->
+  <g filter="url(#soft-shadow)">
+    <!-- Back spikes cluster -->
+    <path d="M48,128 C26,110 24,74 44,52 C60,34 96,28 126,36 C154,44 172,70 166,102 C162,122 148,142 128,152 C108,162 66,152 48,128 Z" fill="url(#spikeGrad)" />
+    <!-- Additional cute spike points -->
+    <path d="M42,56 L24,48 L38,70 L18,74 L36,92 L20,102 L40,116 L28,130 L52,134 L48,150 L72,148 L76,162 L96,156 L108,168 L124,156 L140,164 L146,148 L162,148 L158,132 L174,124 L164,108 L180,94 L164,82 L176,64 L154,62 L158,42 L136,46 L130,26 L112,38 L98,22 L86,38 L68,26 L62,46 Z" fill="#7a4b33" />
+  </g>
+
+  <!-- Little Apple / Leaf accessory on head -->
+  <circle cx="70" cy="38" r="9" fill="#e76f51" />
+  <path d="M70,29 C72,24 76,22 78,22" stroke="#4a3b32" stroke-width="2" stroke-linecap="round" fill="none" />
+  <ellipse cx="76" cy="27" rx="4" ry="2" fill="#81b29a" transform="rotate(-30 76 27)" />
+
+  <!-- Hedgehog Soft Belly / Face -->
+  <ellipse cx="106" cy="105" rx="46" ry="43" fill="url(#bodyGrad)" filter="url(#soft-shadow)" />
+
+  <!-- Hedgehog Cute Ears -->
+  <ellipse cx="74" cy="68" rx="8" ry="11" fill="#fde2cb" stroke="#b07d62" stroke-width="2" transform="rotate(-15 74 68)" />
+  <ellipse cx="74" cy="69" rx="5" ry="7" fill="#f8b6a8" transform="rotate(-15 74 69)" />
+
+  <ellipse cx="140" cy="72" rx="7" ry="10" fill="#fde2cb" stroke="#b07d62" stroke-width="2" transform="rotate(20 140 72)" />
+  <ellipse cx="140" cy="73" rx="4" ry="6" fill="#f8b6a8" transform="rotate(20 140 73)" />
+
+  <!-- Face details -->
+  <!-- Snout / Nose base -->
+  <ellipse cx="106" cy="89" rx="11" ry="8" fill="#f7d4bc" />
+  <!-- Nose -->
+  <ellipse cx="106" cy="85" rx="5" ry="4" fill="#3d2b1f" />
+  <ellipse cx="104.5" cy="83.5" rx="1.5" ry="1" fill="#ffffff" />
+  <!-- Mouth -->
+  <path d="M102,91 Q106,95 110,91" stroke="#3d2b1f" stroke-width="2" stroke-linecap="round" fill="none" />
+
+  <!-- Cheeks Blush -->
+  <ellipse cx="86" cy="92" rx="7" ry="4.5" fill="#f28482" opacity="0.65" />
+  <ellipse cx="126" cy="94" rx="7" ry="4.5" fill="#f28482" opacity="0.65" />
+
+  <!-- Eyes with sparkle -->
+  <ellipse cx="90" cy="80" rx="4.5" ry="5.5" fill="#2b2d42" />
+  <circle cx="88.5" cy="78" r="1.8" fill="#ffffff" />
+  <circle cx="91.5" cy="82" r="0.9" fill="#ffffff" />
+
+  <ellipse cx="122" cy="82" rx="4.5" ry="5.5" fill="#2b2d42" />
+  <circle cx="120.5" cy="80" r="1.8" fill="#ffffff" />
+  <circle cx="123.5" cy="84" r="0.9" fill="#ffffff" />
+
+  <!-- CHALKBOARD held in hands -->
+  <g filter="url(#soft-shadow)">
+    <!-- Wooden Frame -->
+    <rect x="52" y="112" width="102" height="66" rx="8" fill="url(#woodGrad)" stroke="#8d5b28" stroke-width="2" />
+    
+    <!-- Inner Slate -->
+    <rect x="58" y="118" width="90" height="54" rx="5" fill="url(#chalkboardGrad)" />
+    
+    <!-- Chalkboard hanger string -->
+    <path d="M72,112 Q103,98 134,112" stroke="#eed7a1" stroke-width="1.8" fill="none" stroke-dasharray="3 2" />
+
+    <!-- Chalk dust & stars decoration -->
+    <circle cx="65" cy="125" r="1" fill="#ffffff" opacity="0.6" />
+    <circle cx="140" cy="162" r="1.2" fill="#ffffff" opacity="0.5" />
+    <text x="66" y="132" font-size="9" fill="#f4a261" font-family="sans-serif">★</text>
+    <text x="135" y="132" font-size="9" fill="#f4a261" font-family="sans-serif">★</text>
+
+    <!-- Chalk Text: 交班 -->
+    <text x="103" y="153" 
+          font-family="'M PLUS Rounded 1c', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif" 
+          font-size="25" 
+          font-weight="900" 
+          fill="#ffffff" 
+          letter-spacing="4" 
+          text-anchor="middle" 
+          stroke="#fdfbf7" 
+          stroke-width="0.8"
+          style="filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));">
+      交班
+    </text>
+
+    <!-- Chalk stick at bottom tray -->
+    <rect x="122" y="166" width="12" height="3" rx="1.5" fill="#fefae0" opacity="0.9" />
+  </g>
+
+  <!-- Hedgehog Paws holding the chalkboard -->
+  <!-- Left paw -->
+  <ellipse cx="58" cy="138" rx="8" ry="6" fill="#fde2cb" stroke="#b07d62" stroke-width="1.8" transform="rotate(15 58 138)" />
+  <!-- Right paw -->
+  <ellipse cx="148" cy="140" rx="8" ry="6" fill="#fde2cb" stroke="#b07d62" stroke-width="1.8" transform="rotate(-15 148 140)" />
+
+  <!-- Little feet at bottom -->
+  <ellipse cx="86" cy="168" rx="9" ry="6" fill="#fde2cb" stroke="#b07d62" stroke-width="1.8" />
+  <ellipse cx="124" cy="168" rx="9" ry="6" fill="#fde2cb" stroke="#b07d62" stroke-width="1.8" />
+</svg>
