@@ -8,6 +8,7 @@ import { GroupList } from './components/GroupList';
 import { CustomModal } from './components/CustomModal';
 import { ImagePreviewModal } from './components/ImagePreviewModal';
 import { HedgehogMascot } from './components/HedgehogMascot';
+import { PWAInstallButton } from './components/PWAInstallButton';
 import { ClipboardCopy, Camera, Trash2, Sparkles, Store } from 'lucide-react';
 
 const STORAGE_KEY_DATES = 'store_shift_dates';
@@ -288,6 +289,11 @@ export default function App() {
         <p className="text-xs sm:text-sm text-[#8d6e63] mt-1 font-medium">
           溫馨繽紛雜貨店風格，即時預覽與輕鬆打包交班
         </p>
+
+        {/* PWA Install / Shortcut Button */}
+        <div className="mt-2.5">
+          <PWAInstallButton />
+        </div>
       </header>
 
       {/* Real-time Preview Bulletin Board Section */}
