@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'M PLUS Rounded 1c', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+    background: linear-gradient(135deg, #fdfbf7 0%, #f7f1e5 50%, #f4eee0 100%);
+    min-height: 100vh;
+    color: #4a3b32;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* 繽紛雜貨店風格面板 (Vintage General Store Bulletin Board) */
+.store-board {
+  background-color: #fffdf9;
+  border: 6px solid #e07a5f;
+  border-radius: 24px;
+  color: #2b2d42;
+  box-shadow: 0 12px 30px rgba(224, 122, 95, 0.18), inset 0 0 15px rgba(244, 162, 97, 0.08);
+  background-image: radial-gradient(#f4f1de 15%, transparent 16%), radial-gradient(#f4f1de 15%, transparent 16%);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+.input-box {
+  background: #ffffff;
+  border: 2px solid #f4a261;
+  color: #2b2d42;
+  border-radius: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.input-box:focus {
+  border-color: #e07a5f;
+  box-shadow: 0 0 0 3px rgba(224, 122, 95, 0.2);
+  outline: none;
+}
+
+.btn-store {
+  background: #e07a5f;
+  color: white;
+  border: 2px solid #f4a261;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(224, 122, 95, 0.25);
+}
+
+.btn-store:hover {
+  background: #d64045;
+  border-color: #e07a5f;
+  transform: translateY(-1px);
+}
+
+.btn-store:active {
+  transform: scale(0.97);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(244, 162, 97, 0.08);
+}
+::-webkit-scrollbar-thumb {
+  background: #f4a261;
+  border-radius: 4px;
+}
+

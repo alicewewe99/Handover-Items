@@ -1,0 +1,6 @@
+{
+  "name": "交班事項",
+  "description": "溫馨繽紛雜貨店風格的交班事項小幫手，支援即時預覽、一鍵複製與圖片打包下載。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
