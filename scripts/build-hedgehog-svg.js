@@ -1,4 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+import fs from 'fs';
+import path from 'path';
+import sharp from 'sharp';
+
+function generateSVG() {
+  // Generate spiky quills programmatically for natural fluffy hedgehog look
+  const quillPaths = [];
+  const cx = 512;
+  const cy = 470;
+  
+  // Outer layer quills (darker brown with warm highlights)
+  for (let angle = 185; angle <= 355; angle += 4.5) {
+    const rad = (angle * Math.PI) / 180;
+    const len = 280 + Math.sin(angle * 7) * 25 + Math.cos(angle * 3) * 15;
+    const baseX1 = cx + Math.cos(rad - 0.05) * 170;
+    const baseY1 = cy + Math.sin(rad - 0.05) * 170;
+    const baseX2 = cx + Math.cos(rad + 0.05) * 170;
+    const baseY2 = cy + Math.sin(rad + 0.05) * 170;
+    const tipX = cx + Math.cos(rad) * len;
+    const tipY = cy + Math.sin(rad) * len;
+    
+    quillPaths.push(`<path d="M ${baseX1.toFixed(1)} ${baseY1.toFixed(1)} Q ${(cx + Math.cos(rad)*220).toFixed(1)} ${(cy + Math.sin(rad)*220).toFixed(1)} ${tipX.toFixed(1)} ${tipY.toFixed(1)} Q ${(cx + Math.cos(rad)*220).toFixed(1)} ${(cy + Math.sin(rad)*220).toFixed(1)} ${baseX2.toFixed(1)} ${baseY2.toFixed(1)} Z" fill="url(#quillGradDark)" />`);
+  }
+
+  // Mid layer quills (medium brown with golden cream tips)
+  for (let angle = 190; angle <= 350; angle += 5.5) {
+    const rad = (angle * Math.PI) / 180;
+    const len = 250 + Math.cos(angle * 5) * 20;
+    const baseX1 = cx + Math.cos(rad - 0.06) * 140;
+    const baseY1 = cy + Math.sin(rad - 0.06) * 140;
+    const baseX2 = cx + Math.cos(rad + 0.06) * 140;
+    const baseY2 = cy + Math.sin(rad + 0.06) * 140;
+    const tipX = cx + Math.cos(rad) * len;
+    const tipY = cy + Math.sin(rad) * len;
+    
+    quillPaths.push(`<path d="M ${baseX1.toFixed(1)} ${baseY1.toFixed(1)} Q ${(cx + Math.cos(rad)*190).toFixed(1)} ${(cy + Math.sin(rad)*190).toFixed(1)} ${tipX.toFixed(1)} ${tipY.toFixed(1)} Q ${(cx + Math.cos(rad)*190).toFixed(1)} ${(cy + Math.sin(rad)*190).toFixed(1)} ${baseX2.toFixed(1)} ${baseY2.toFixed(1)} Z" fill="url(#quillGradMid)" />`);
+  }
+
+  // Forehead quills (fluffy layered tips)
+  for (let angle = 210; angle <= 330; angle += 7) {
+    const rad = (angle * Math.PI) / 180;
+    const len = 215 + Math.sin(angle * 9) * 15;
+    const baseX1 = cx + Math.cos(rad - 0.07) * 100;
+    const baseY1 = cy + Math.sin(rad - 0.07) * 100;
+    const baseX2 = cx + Math.cos(rad + 0.07) * 100;
+    const baseY2 = cy + Math.sin(rad + 0.07) * 100;
+    const tipX = cx + Math.cos(rad) * len;
+    const tipY = cy + Math.sin(rad) * len;
+    
+    quillPaths.push(`<path d="M ${baseX1.toFixed(1)} ${baseY1.toFixed(1)} Q ${(cx + Math.cos(rad)*160).toFixed(1)} ${(cy + Math.sin(rad)*160).toFixed(1)} ${tipX.toFixed(1)} ${tipY.toFixed(1)} Q ${(cx + Math.cos(rad)*160).toFixed(1)} ${(cy + Math.sin(rad)*160).toFixed(1)} ${baseX2.toFixed(1)} ${baseY2.toFixed(1)} Z" fill="url(#quillGradLight)" />`);
+  }
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
   <defs>
     <!-- Background Gradient -->
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -103,92 +155,7 @@
 
     <!-- Quills Detailed Ray Paths -->
     <g id="hedgehog-quills">
-      <path d="M 342.1 463.7 Q 292.8 450.8 225.0 444.9 Q 292.8 450.8 343.6 446.7 Z" fill="url(#quillGradDark)" />
-      <path d="M 343.1 450.4 Q 295.0 433.7 233.7 423.4 Q 295.0 433.7 345.9 433.6 Z" fill="url(#quillGradDark)" />
-      <path d="M 345.2 437.2 Q 298.5 416.8 232.5 400.3 Q 298.5 416.8 349.3 420.7 Z" fill="url(#quillGradDark)" />
-      <path d="M 348.3 424.2 Q 303.4 400.2 225.3 374.1 Q 303.4 400.2 353.7 408.1 Z" fill="url(#quillGradDark)" />
-      <path d="M 352.4 411.5 Q 309.5 384.0 222.6 347.1 Q 309.5 384.0 359.0 395.8 Z" fill="url(#quillGradDark)" />
-      <path d="M 357.5 399.1 Q 316.9 368.4 232.1 324.3 Q 316.9 368.4 365.3 384.1 Z" fill="url(#quillGradDark)" />
-      <path d="M 363.5 387.2 Q 325.4 353.4 252.9 308.1 Q 325.4 353.4 372.5 372.8 Z" fill="url(#quillGradDark)" />
-      <path d="M 370.5 375.8 Q 335.2 339.1 276.2 295.5 Q 335.2 339.1 380.6 362.2 Z" fill="url(#quillGradDark)" />
-      <path d="M 378.3 365.0 Q 346.0 325.7 293.6 280.1 Q 346.0 325.7 389.4 352.2 Z" fill="url(#quillGradDark)" />
-      <path d="M 386.9 354.9 Q 357.8 313.1 303.6 257.9 Q 357.8 313.1 399.1 342.9 Z" fill="url(#quillGradDark)" />
-      <path d="M 396.4 345.4 Q 370.6 301.5 312.0 231.7 Q 370.6 301.5 409.4 334.5 Z" fill="url(#quillGradDark)" />
-      <path d="M 406.5 336.7 Q 384.2 290.9 326.4 209.8 Q 384.2 290.9 420.3 326.8 Z" fill="url(#quillGradDark)" />
-      <path d="M 417.3 328.8 Q 398.7 281.4 349.2 199.0 Q 398.7 281.4 431.8 320.1 Z" fill="url(#quillGradDark)" />
-      <path d="M 428.6 321.8 Q 413.8 273.1 376.6 198.5 Q 413.8 273.1 443.8 314.3 Z" fill="url(#quillGradDark)" />
-      <path d="M 440.5 315.8 Q 429.6 266.0 402.9 199.9 Q 429.6 266.0 456.3 309.4 Z" fill="url(#quillGradDark)" />
-      <path d="M 452.8 310.6 Q 445.8 260.2 424.9 193.9 Q 445.8 260.2 469.0 305.5 Z" fill="url(#quillGradDark)" />
-      <path d="M 465.5 306.5 Q 462.5 255.6 444.8 178.9 Q 462.5 255.6 482.1 302.7 Z" fill="url(#quillGradDark)" />
-      <path d="M 478.5 303.3 Q 479.5 252.4 466.0 162.4 Q 479.5 252.4 495.3 300.8 Z" fill="url(#quillGradDark)" />
-      <path d="M 491.7 301.2 Q 496.7 250.5 490.0 155.2 Q 496.7 250.5 508.6 300.0 Z" fill="url(#quillGradDark)" />
-      <path d="M 505.0 300.1 Q 513.9 250.0 514.7 162.2 Q 513.9 250.0 522.0 300.3 Z" fill="url(#quillGradDark)" />
-      <path d="M 518.3 300.1 Q 531.2 250.8 537.5 178.1 Q 531.2 250.8 535.3 301.6 Z" fill="url(#quillGradDark)" />
-      <path d="M 531.6 301.1 Q 548.3 253.0 558.5 191.8 Q 548.3 253.0 548.4 303.9 Z" fill="url(#quillGradDark)" />
-      <path d="M 544.8 303.2 Q 565.2 256.5 580.4 195.8 Q 565.2 256.5 561.3 307.3 Z" fill="url(#quillGradDark)" />
-      <path d="M 557.8 306.3 Q 581.8 261.4 604.9 192.3 Q 581.8 261.4 573.9 311.7 Z" fill="url(#quillGradDark)" />
-      <path d="M 570.5 310.4 Q 598.0 267.5 630.4 191.0 Q 598.0 267.5 586.2 317.0 Z" fill="url(#quillGradDark)" />
-      <path d="M 582.9 315.5 Q 613.6 274.9 652.2 200.7 Q 613.6 274.9 597.9 323.3 Z" fill="url(#quillGradDark)" />
-      <path d="M 594.8 321.5 Q 628.6 283.4 666.9 222.1 Q 628.6 283.4 609.2 330.5 Z" fill="url(#quillGradDark)" />
-      <path d="M 606.2 328.5 Q 642.9 293.2 676.7 247.4 Q 642.9 293.2 619.8 338.6 Z" fill="url(#quillGradDark)" />
-      <path d="M 617.0 336.3 Q 656.3 304.0 687.9 267.7 Q 656.3 304.0 629.8 347.4 Z" fill="url(#quillGradDark)" />
-      <path d="M 627.1 344.9 Q 668.9 315.8 705.6 279.7 Q 668.9 315.8 639.1 357.1 Z" fill="url(#quillGradDark)" />
-      <path d="M 636.6 354.4 Q 680.5 328.6 728.4 288.4 Q 680.5 328.6 647.5 367.4 Z" fill="url(#quillGradDark)" />
-      <path d="M 645.3 364.5 Q 691.1 342.2 748.6 301.2 Q 691.1 342.2 655.2 378.3 Z" fill="url(#quillGradDark)" />
-      <path d="M 653.2 375.3 Q 700.6 356.7 758.5 321.9 Q 700.6 356.7 661.9 389.8 Z" fill="url(#quillGradDark)" />
-      <path d="M 660.2 386.6 Q 708.9 371.8 757.3 347.7 Q 708.9 371.8 667.7 401.8 Z" fill="url(#quillGradDark)" />
-      <path d="M 666.2 398.5 Q 716.0 387.6 752.7 372.8 Q 716.0 387.6 672.6 414.3 Z" fill="url(#quillGradDark)" />
-      <path d="M 671.4 410.8 Q 721.8 403.8 754.3 393.6 Q 721.8 403.8 676.5 427.0 Z" fill="url(#quillGradDark)" />
-      <path d="M 675.5 423.5 Q 726.4 420.5 765.9 411.4 Q 726.4 420.5 679.3 440.1 Z" fill="url(#quillGradDark)" />
-      <path d="M 678.7 436.5 Q 729.6 437.5 781.4 429.7 Q 729.6 437.5 681.2 453.3 Z" fill="url(#quillGradDark)" />
-      <path d="M 372.9 454.0 Q 324.9 437.0 259.4 425.5 Q 324.9 437.0 375.8 437.5 Z" fill="url(#quillGradMid)" />
-      <path d="M 375.1 440.7 Q 328.9 419.2 288.3 408.0 Q 328.9 419.2 379.6 424.6 Z" fill="url(#quillGradMid)" />
-      <path d="M 378.5 427.8 Q 334.6 401.9 260.8 373.6 Q 334.6 401.9 384.5 412.1 Z" fill="url(#quillGradMid)" />
-      <path d="M 383.2 415.2 Q 342.0 385.2 296.6 362.6 Q 342.0 385.2 390.7 400.1 Z" fill="url(#quillGradMid)" />
-      <path d="M 389.0 403.1 Q 350.9 369.3 304.8 340.5 Q 350.9 369.3 397.9 388.8 Z" fill="url(#quillGradMid)" />
-      <path d="M 396.0 391.6 Q 361.3 354.3 299.8 307.2 Q 361.3 354.3 406.2 378.3 Z" fill="url(#quillGradMid)" />
-      <path d="M 404.1 380.8 Q 373.0 340.4 343.3 312.7 Q 373.0 340.4 415.5 368.6 Z" fill="url(#quillGradMid)" />
-      <path d="M 413.1 370.9 Q 386.1 327.7 339.6 275.2 Q 386.1 327.7 425.7 359.8 Z" fill="url(#quillGradMid)" />
-      <path d="M 423.1 361.9 Q 400.3 316.3 362.2 263.8 Q 400.3 316.3 436.6 352.0 Z" fill="url(#quillGradMid)" />
-      <path d="M 433.8 353.8 Q 415.6 306.3 393.8 269.3 Q 415.6 306.3 448.3 345.3 Z" fill="url(#quillGradMid)" />
-      <path d="M 445.3 346.9 Q 431.7 297.8 398.1 225.7 Q 431.7 297.8 460.5 339.8 Z" fill="url(#quillGradMid)" />
-      <path d="M 457.4 341.1 Q 448.6 290.9 432.2 244.6 Q 448.6 290.9 473.3 335.5 Z" fill="url(#quillGradMid)" />
-      <path d="M 470.0 336.4 Q 466.0 285.6 452.5 231.3 Q 466.0 285.6 486.3 332.4 Z" fill="url(#quillGradMid)" />
-      <path d="M 483.0 333.0 Q 483.9 282.1 472.6 206.4 Q 483.9 282.1 499.6 330.5 Z" fill="url(#quillGradMid)" />
-      <path d="M 496.3 330.9 Q 502.1 280.3 499.9 240.0 Q 502.1 280.3 513.1 330.0 Z" fill="url(#quillGradMid)" />
-      <path d="M 509.7 330.0 Q 520.3 280.2 523.4 208.6 Q 520.3 280.2 526.5 330.8 Z" fill="url(#quillGradMid)" />
-      <path d="M 523.1 330.4 Q 538.4 281.8 547.2 219.4 Q 538.4 281.8 539.8 332.8 Z" fill="url(#quillGradMid)" />
-      <path d="M 536.5 332.2 Q 556.4 285.2 566.6 242.5 Q 556.4 285.2 552.8 336.1 Z" fill="url(#quillGradMid)" />
-      <path d="M 549.6 335.1 Q 573.9 290.4 599.8 214.9 Q 573.9 290.4 565.4 340.6 Z" fill="url(#quillGradMid)" />
-      <path d="M 562.3 339.4 Q 590.8 297.1 610.6 253.7 Q 590.8 297.1 577.6 346.3 Z" fill="url(#quillGradMid)" />
-      <path d="M 574.6 344.8 Q 607.0 305.5 635.9 255.4 Q 607.0 305.5 589.1 353.2 Z" fill="url(#quillGradMid)" />
-      <path d="M 586.3 351.4 Q 622.3 315.3 666.2 253.9 Q 622.3 315.3 600.0 361.1 Z" fill="url(#quillGradMid)" />
-      <path d="M 597.3 359.0 Q 636.7 326.6 662.9 296.4 Q 636.7 326.6 610.0 370.0 Z" fill="url(#quillGradMid)" />
-      <path d="M 607.6 367.7 Q 649.8 339.2 702.8 289.0 Q 649.8 339.2 619.1 379.9 Z" fill="url(#quillGradMid)" />
-      <path d="M 617.0 377.3 Q 661.7 353.0 710.0 315.3 Q 661.7 353.0 627.3 390.6 Z" fill="url(#quillGradMid)" />
-      <path d="M 625.4 387.8 Q 672.2 367.9 710.3 343.7 Q 672.2 367.9 634.4 402.0 Z" fill="url(#quillGradMid)" />
-      <path d="M 632.7 399.1 Q 681.3 383.7 752.6 347.4 Q 681.3 383.7 640.3 414.0 Z" fill="url(#quillGradMid)" />
-      <path d="M 638.9 411.0 Q 688.8 400.4 731.9 383.4 Q 688.8 400.4 645.1 426.6 Z" fill="url(#quillGradMid)" />
-      <path d="M 644.0 423.4 Q 694.6 417.6 751.9 401.2 Q 694.6 417.6 648.6 439.5 Z" fill="url(#quillGradMid)" />
-      <path d="M 647.9 436.3 Q 698.8 435.4 771.9 421.8 Q 698.8 435.4 650.9 452.8 Z" fill="url(#quillGradMid)" />
-      <path d="M 422.1 426.2 Q 373.4 390.0 338.1 369.6 Q 373.4 390.0 429.1 414.1 Z" fill="url(#quillGradLight)" />
-      <path d="M 428.1 415.6 Q 384.2 373.7 350.8 348.5 Q 384.2 373.7 436.5 404.4 Z" fill="url(#quillGradLight)" />
-      <path d="M 435.4 405.7 Q 396.9 358.9 365.8 328.8 Q 396.9 358.9 445.1 395.7 Z" fill="url(#quillGradLight)" />
-      <path d="M 443.8 396.9 Q 411.3 345.7 383.0 310.7 Q 411.3 345.7 454.7 388.1 Z" fill="url(#quillGradLight)" />
-      <path d="M 453.2 389.1 Q 427.2 334.3 402.3 294.5 Q 427.2 334.3 465.1 381.7 Z" fill="url(#quillGradLight)" />
-      <path d="M 463.5 382.5 Q 444.4 325.0 423.6 280.4 Q 444.4 325.0 476.2 376.6 Z" fill="url(#quillGradLight)" />
-      <path d="M 474.5 377.3 Q 462.6 317.8 446.6 268.8 Q 462.6 317.8 487.8 373.0 Z" fill="url(#quillGradLight)" />
-      <path d="M 486.1 373.4 Q 481.5 312.9 471.2 259.9 Q 481.5 312.9 499.8 370.7 Z" fill="url(#quillGradLight)" />
-      <path d="M 498.1 371.0 Q 500.8 310.4 496.9 253.9 Q 500.8 310.4 512.0 370.0 Z" fill="url(#quillGradLight)" />
-      <path d="M 510.2 370.0 Q 520.4 310.2 523.5 251.2 Q 520.4 310.2 524.2 370.7 Z" fill="url(#quillGradLight)" />
-      <path d="M 522.4 370.5 Q 539.8 312.4 550.5 251.9 Q 539.8 312.4 536.2 373.0 Z" fill="url(#quillGradLight)" />
-      <path d="M 534.5 372.6 Q 558.8 317.0 577.4 256.2 Q 558.8 317.0 547.9 376.6 Z" fill="url(#quillGradLight)" />
-      <path d="M 546.2 376.0 Q 577.1 323.8 603.7 264.0 Q 577.1 323.8 559.0 381.7 Z" fill="url(#quillGradLight)" />
-      <path d="M 557.4 380.9 Q 594.4 332.9 629.0 275.3 Q 594.4 332.9 569.4 388.1 Z" fill="url(#quillGradLight)" />
-      <path d="M 567.9 387.1 Q 610.5 343.9 652.7 290.0 Q 610.5 343.9 578.9 395.7 Z" fill="url(#quillGradLight)" />
-      <path d="M 577.6 394.5 Q 625.1 356.9 674.2 307.8 Q 625.1 356.9 587.5 404.4 Z" fill="url(#quillGradLight)" />
-      <path d="M 586.3 403.1 Q 638.1 371.5 693.2 328.5 Q 638.1 371.5 594.9 414.1 Z" fill="url(#quillGradLight)" />
-      <path d="M 593.9 412.6 Q 649.1 387.6 709.1 351.6 Q 649.1 387.6 601.1 424.6 Z" fill="url(#quillGradLight)" />
+      ${quillPaths.join('\n      ')}
     </g>
 
     <!-- Body & Chubby Shoulders -->
@@ -299,14 +266,10 @@
       <rect x="-85" y="-50" width="160" height="105" rx="12" ry="12" fill="#FFFFFD" stroke="#E8E0D2" stroke-width="3" />
 
       <!-- Spiral Binding (Loops on Left) -->
-      <path d="M -90 -40 C -80 -44 -80 -36 -90 -38" fill="none" stroke="#63544B" stroke-width="3.5" stroke-linecap="round" />
-      <path d="M -90 -28.5 C -80 -32.5 -80 -24.5 -90 -26.5" fill="none" stroke="#63544B" stroke-width="3.5" stroke-linecap="round" />
-      <path d="M -90 -17 C -80 -21 -80 -13 -90 -15" fill="none" stroke="#63544B" stroke-width="3.5" stroke-linecap="round" />
-      <path d="M -90 -5.5 C -80 -9.5 -80 -1.5 -90 -3.5" fill="none" stroke="#63544B" stroke-width="3.5" stroke-linecap="round" />
-      <path d="M -90 6 C -80 2 -80 10 -90 8" fill="none" stroke="#63544B" stroke-width="3.5" stroke-linecap="round" />
-      <path d="M -90 17.5 C -80 13.5 -80 21.5 -90 19.5" fill="none" stroke="#63544B" stroke-width="3.5" stroke-linecap="round" />
-      <path d="M -90 29 C -80 25 -80 33 -90 31" fill="none" stroke="#63544B" stroke-width="3.5" stroke-linecap="round" />
-      <path d="M -90 40.5 C -80 36.5 -80 44.5 -90 42.5" fill="none" stroke="#63544B" stroke-width="3.5" stroke-linecap="round" />
+      ${Array.from({ length: 8 }).map((_, i) => {
+        const y = -40 + i * 11.5;
+        return `<path d="M -90 ${y} C -80 ${y-4} -80 ${y+4} -90 ${y+2}" fill="none" stroke="#63544B" stroke-width="3.5" stroke-linecap="round" />`;
+      }).join('\n      ')}
 
       <!-- Text on Notebook -->
       <text x="-5" y="-12" text-anchor="middle" font-family="'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', cursive, sans-serif" font-size="13" font-weight="700" fill="#4A3C34">Have a</text>
@@ -367,4 +330,11 @@
   <!-- Squircle Border Highlight & Inner Rim -->
   <rect x="24" y="24" width="976" height="976" rx="220" ry="220" fill="none" stroke="#FFFFFF" stroke-width="12" opacity="0.9" />
   <rect x="24" y="24" width="976" height="976" rx="220" ry="220" fill="none" stroke="#DFD5C2" stroke-width="4" opacity="0.6" />
-</svg>
+</svg>`;
+
+  return svg;
+}
+
+const svgContent = generateSVG();
+fs.writeFileSync('public/hedgehog-handover.svg', svgContent);
+console.log('Successfully wrote public/hedgehog-handover.svg');
